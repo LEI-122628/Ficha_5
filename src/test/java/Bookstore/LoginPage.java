@@ -13,10 +13,12 @@ public class LoginPage {
     private final SelenideElement usernameField = $(By.xpath("//input[@name='username']"));
     private final SelenideElement passwordField = $(By.xpath("//input[@name='password']"));
 
+    // @Step removido para não crashar com Java 25
     public void openPage() {
         open(URL);
     }
 
+    // @Step removido para não crashar com Java 25
     public void login(String user, String pass) {
         usernameField.setValue(user);
         passwordField.setValue(pass).pressEnter();
