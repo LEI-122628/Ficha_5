@@ -1,0 +1,3 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"Testa adicionar uma nova categoria com sucesso","8059","testAdicionarCategoria()","","2025-12-05","failed","2025-12-05","","AdicionarCategoria.CategoriesPageTest","AdicionarCategoria.CategoriesPageTest","testAdicionarCategoria"
+"Testa a criação de uma categoria na Bookstore Vaadin","8196","testAddCategory()","","2025-12-05","passed","2025-12-05","","Bookstore.AdicionarCategoriaTest","Bookstore.AdicionarCategoriaTest","testAddCategory"
