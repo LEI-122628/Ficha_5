@@ -2,6 +2,7 @@ package com.example.ficha_5;
 
 import org.junit.jupiter.api.*;
 
+import static java.lang.Thread.sleep;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.openqa.selenium.By;
