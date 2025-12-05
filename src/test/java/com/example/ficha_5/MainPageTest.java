@@ -59,4 +59,6 @@ public class MainPageTest {
 
         WebElement productsList = driver.findElement(By.id("products-page"));
         assertTrue(productsList.isDisplayed());
-        assertEquals("All Developer Tools and Products by JetBrain
+        assertEquals("All Developer Tools and Products by JetBrains", driver.getTitle());
+    }
+}
