@@ -12,13 +12,13 @@ public class AdicionarProdutoTest {
     // CORREÇÃO: Variável que faltava (PRODUCT_NAME)
     private static final String PRODUCT_NAME = "Automacao Selenium Teste";
 
-    private static final String PRODUCT_PRICE = "35.50";
+    private static final String PRODUCT_PRICE = "35,50";
 
     private static final String PRODUCT_STOCK = "150";
 
     private static final String PRODUCT_AVAILABILITY = "Available";
 
-    private static final String PRODUCT_CATEGORY = "Ficção";
+    private static final String PRODUCT_CATEGORY = "Cookbooks";
 
     // Page Objects
     private final LoginPage loginPage = new LoginPage();

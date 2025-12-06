@@ -16,7 +16,7 @@ public class AdicionarProduto {
     private final SelenideElement newProductButton = $(By.xpath("//vaadin-button[text()='New product']"));
 
     // Botão Save (procura pelo texto)
-    private final SelenideElement saveButton = $(By.xpath("//vaadin-button[text()='Save']"));
+    private final SelenideElement saveButton = $(By.xpath("//vaadin-button[contains(., 'Save')]"));
 
     // CORREÇÃO: Seletores Específicos por Label (Nome do campo)
     // Assim não há confusão entre Preço, Nome e Stock.
@@ -44,52 +44,39 @@ public class AdicionarProduto {
     }
 
     // --- MÉTODOS DE PREENCHIMENTO (Usando Actions para não falhar) ---
+    private void clearAndType(SelenideElement element, String value) {
+        element.shouldBe(Condition.visible).click();
+        actions().sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE).perform();
+        actions().sendKeys(value).perform();
+    }
 
     public void setProductName(String name) {
         productNameField.shouldBe(Condition.visible).click();
-        // Truque do Vaadin: Clicar e Teclar
+        actions().sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE).perform();
         actions().sendKeys(name).perform();
     }
 
     public void setPrice(String price) {
-        priceField.shouldBe(Condition.visible).click();
-        actions().sendKeys(Keys.DELETE).perform();
-        actions().sendKeys(Keys.DELETE).perform();
-        actions().sendKeys(Keys.DELETE).perform();
-        actions().sendKeys(Keys.DELETE).perform();
-        actions().sendKeys(Keys.DELETE).perform();
-        actions().sendKeys(price).perform();
+        clearAndType(priceField, price);
     }
 
     public void setStock(String quantity) {
-        stockField.shouldBe(Condition.visible).click();
-        actions().sendKeys(Keys.DELETE).perform();
-        actions().sendKeys(Keys.DELETE).perform();
-        actions().sendKeys(Keys.DELETE).perform();
-        actions().sendKeys(Keys.DELETE).perform();
-        actions().sendKeys(Keys.DELETE).perform();
-        actions().sendKeys(quantity).perform();
+        clearAndType(stockField, quantity);
     }
 
     public void setAvailability(String option) {
-        // Dropdowns Vaadin são complexos:
-        // 1. Clicar no dropdown para abrir
         availabilityDropdown.shouldBe(Condition.visible).click();
-
-        // 2. Esperar que as opções apareçam (vaadin-item) e clicar na correta
-        // O elemento <vaadin-item> costuma estar num overlay separado
         $(By.xpath("//vaadin-item[contains(text(), '" + option + "')]"))
                 .shouldBe(Condition.visible)
                 .click();
     }
 
     public void selectCategory(String categoryName) {
-        // Scroll para garantir que a checkbox está visível
         SelenideElement checkbox = $(By.xpath("//vaadin-checkbox[normalize-space(text())='" + categoryName + "']"));
-        checkbox.scrollIntoView(true).click();
+        checkbox.scrollIntoView(true).shouldBe(Condition.visible).click();
     }
 
     public void clickSave() {
-        saveButton.click();
+        saveButton.shouldBe(Condition.visible, Condition.enabled).click();
     }
 }
