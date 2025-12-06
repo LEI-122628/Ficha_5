@@ -1,18 +1,14 @@
 package Bookstore;
 
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.Description;
 import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static com.codeborne.selenide.Selectors.*;
-import static com.codeborne.selenide.Selenide.*;
-
-// page_url = https://vaadin-bookstore-example.demo.vaadin.com/
 public class AdicionarCategoriaTest {
     LoginPage loginPage = new LoginPage();
     AdicionarCategoria categoriesPage = new AdicionarCategoria();
@@ -28,6 +24,11 @@ public class AdicionarCategoriaTest {
         Configuration.timeout = 10000;
     }
 
+    @AfterEach
+    public void tearDown() {
+        Selenide.closeWebDriver();
+    }
+
     @Test
     @Description("Testa a criação de uma categoria na Bookstore Vaadin")
     public void testAddCategory() {
@@ -38,8 +39,6 @@ public class AdicionarCategoriaTest {
         loginPage.login(user, password);
 
         categoriesPage.setLinkAdmin();
-
         categoriesPage.createCategory(categoryName);
-
     }
 }
